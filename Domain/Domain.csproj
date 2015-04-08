@@ -50,8 +50,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TextFunctions">
-      <HintPath>..\GoudaServiceTest\bin\Debug\TextFunctions.dll</HintPath>
+    <Reference Include="TextFunctions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Service\Bin\TextFunctions.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -74,7 +75,7 @@
     <Compile Include="Entities\Phrase.cs" />
     <Compile Include="Entities\TypeFineContext.cs" />
     <Compile Include="Enums\RequestType.cs" />
-    <Compile Include="GoudaDatabaseInitializer.cs" />
+    <Compile Include="PhraseDatabaseInitializer.cs" />
     <Compile Include="Mappers\ProposedGoudaMapper.cs" />
     <Compile Include="Models\GoudaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,0 +1,32 @@
+﻿@import 'mixins.less';
+
+/*Nie chainować placeholderów bo nie zadziałają*/
+::-webkit-input-placeholder
+{
+    .placeholder();
+}
+
+:-moz-placeholder
+{
+    .placeholder();
+}
+
+::-moz-placeholder
+{
+    .placeholder();
+}
+
+:-ms-input-placeholder
+{
+    .placeholder();
+}
+
+::selection
+{
+    .selection();
+}
+
+::-moz-selection
+{
+    .selection();
+}

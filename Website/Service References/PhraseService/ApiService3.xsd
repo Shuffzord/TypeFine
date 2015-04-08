@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Service.Contracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Service.Contracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://www.api.jakpisac.edu.pl/ApiService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://www.api.jakpisac.edu.pl/ApiService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="GetPhrasesRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Keyword" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Skip" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetPhrasesRequest" nillable="true" type="tns:GetPhrasesRequest" />
+  <xs:complexType name="BaseRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeviceId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BaseRequest" nillable="true" type="tns:BaseRequest" />
+  <xs:complexType name="GetPhrasesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Phrases" nillable="true" type="tns:ArrayOfPhrase" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetPhrasesResponse" nillable="true" type="tns:GetPhrasesResponse" />
+  <xs:complexType name="ArrayOfPhrase">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Phrase" nillable="true" type="tns:Phrase" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPhrase" nillable="true" type="tns:ArrayOfPhrase" />
+  <xs:complexType name="Phrase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Keyword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Right" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Phrase" nillable="true" type="tns:Phrase" />
+  <xs:complexType name="AddPhraseRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Right" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddPhraseRequest" nillable="true" type="tns:AddPhraseRequest" />
+  <xs:complexType name="CheckRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LastUpdateDate" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CheckRequest" nillable="true" type="tns:CheckRequest" />
+  <xs:complexType name="CheckResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NewPhrasesCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CheckResponse" nillable="true" type="tns:CheckResponse" />
+  <xs:complexType name="UpdateRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LastUpdateDate" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UpdateRequest" nillable="true" type="tns:UpdateRequest" />
+  <xs:complexType name="UpdateResponse">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Phrases" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="UpdateDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpdateResponse" nillable="true" type="tns:UpdateResponse" />
+  <xs:complexType name="NotificationRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChannelUrl" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="NotificationRequest" nillable="true" type="tns:NotificationRequest" />
+  <xs:complexType name="MatchRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Keyword" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Phrase" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MatchRequest" nillable="true" type="tns:MatchRequest" />
+  <xs:complexType name="GetMessagesRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetMessagesRequest" nillable="true" type="tns:GetMessagesRequest" />
+  <xs:complexType name="GetMessagesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Messages" nillable="true" type="tns:ArrayOfMessage" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetMessagesResponse" nillable="true" type="tns:GetMessagesResponse" />
+  <xs:complexType name="ArrayOfMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Message" nillable="true" type="tns:Message" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMessage" nillable="true" type="tns:ArrayOfMessage" />
+  <xs:complexType name="Message">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Header" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Message" nillable="true" type="tns:Message" />
+  <xs:complexType name="GetRandomPhraseRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetRandomPhraseRequest" nillable="true" type="tns:GetRandomPhraseRequest" />
+  <xs:complexType name="WordOfTheDayResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Phrase" nillable="true" type="tns:Phrase" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WordOfTheDayResponse" nillable="true" type="tns:WordOfTheDayResponse" />
+  <xs:complexType name="WordOfTheDayRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WordOfTheDayRequest" nillable="true" type="tns:WordOfTheDayRequest" />
+  <xs:complexType name="LogErrorRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Exception" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LogErrorType" type="tns:LogErrorType" />
+          <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LogErrorRequest" nillable="true" type="tns:LogErrorRequest" />
+  <xs:simpleType name="LogErrorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AdsError">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="LogErrorType" nillable="true" type="tns:LogErrorType" />
+  <xs:complexType name="LogTimeRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BaseRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LogTimeRequest" nillable="true" type="tns:LogTimeRequest" />
+</xs:schema>

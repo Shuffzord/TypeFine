@@ -13,49 +13,49 @@ namespace Domain.Entities
         {
         }
 
-        public DbSet<Phrase> Goudas { get; set; }
+        public DbSet<Phrase> Phrases { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
-        public DbSet<ProposedPhrase> ProposedGoudas { get; set; }
-        public DbSet<User> GoudaUsers { get; set; }
-        public DbSet<Notifications> GoudaNotifications { get; set; }
-        public DbSet<NotificationUser> GoudaNotificationUsers { get; set; }
+        public DbSet<ProposedPhrase> ProposedPhrases { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Notifications> Notifications { get; set; }
+        public DbSet<NotificationUser> NotificationUsers { get; set; }
         public DbSet<NotificationHistory> NotificationHistory { get; set; }
-        public DbSet<KeywordPhraseReference> KeywordGoudaWeakReferences { get; set; }
-        public DbSet<DeveloperMessage> GoudaMessages { get; set; }
+        public DbSet<KeywordPhraseReference> KeywordPhraseReferences { get; set; }
+        public DbSet<DeveloperMessage> DeveloperMessages { get; set; }
         public DbSet<WordOfTheDay> WordsOfTheDay { get; set; }
         public DbSet<RequestInfo> RequestInfos { get; set; }
 
-        public IEnumerable<Phrase> GetGouda(string keyword)
+        public IEnumerable<Phrase> GetPhrase(string keyword)
         {
             throw new NotImplementedException();
         }
 
-        private struct GoudaIdWithRankModel
+        private struct PhraseIdWithRankModel
         {
-            public long GoudaId;
+            public long PhraseId;
             public double Rank;
         }
 
-        private class GoudaWithRankModelComparer : IComparer<GoudaIdWithRankModel>
+        private class PhraseWithRankModelComparer : IComparer<PhraseIdWithRankModel>
         {
-            public int Compare(GoudaIdWithRankModel x, GoudaIdWithRankModel y)
+            public int Compare(PhraseIdWithRankModel x, PhraseIdWithRankModel y)
             {
                 return y.Rank.CompareTo(x.Rank);
             }
         }
 
-        private IEnumerable<GoudaIdWithRankModel> GetTopTen(string keyword)
+        private IEnumerable<PhraseIdWithRankModel> GetTopTen(string keyword)
         {
-            var outp = new List<GoudaIdWithRankModel>(10);
+            var outp = new List<PhraseIdWithRankModel>(10);
             var i = 0;
-            foreach (var gouda in Goudas.Select(x => new { x.Id, x.Value }))
+            foreach (var phrase in Phrases.Select(x => new { x.Id, x.Value }))
             {
-                var rank = StringMetrics.Levenstein(keyword, gouda.Value).Value;
+                var rank = StringMetrics.Levenstein(keyword, phrase.Value).Value;
                 if (i < 10)
                 {
-                    outp.Add(new GoudaIdWithRankModel
+                    outp.Add(new PhraseIdWithRankModel
                     {
-                        GoudaId = gouda.Id,
+                        PhraseId = phrase.Id,
                         Rank = rank
                     });
 
@@ -64,18 +64,18 @@ namespace Domain.Entities
                 }
                 if (i == 10)
                 {
-                    outp.Sort(new GoudaWithRankModelComparer());
+                    outp.Sort(new PhraseWithRankModelComparer());
                 }
                 if (!(rank > outp[9].Rank))
                     continue;
 
                 outp.RemoveAt(9);
-                outp.Add(new GoudaIdWithRankModel
+                outp.Add(new PhraseIdWithRankModel
                 {
-                    GoudaId = gouda.Id,
+                    PhraseId = phrase.Id,
                     Rank = rank
                 });
-                outp.Sort(new GoudaWithRankModelComparer());
+                outp.Sort(new PhraseWithRankModelComparer());
             }
             return outp;
         }
@@ -98,14 +98,14 @@ namespace Domain.Entities
                 var outp = new List<Phrase>();
                 foreach (var top in GetTopTen(keyword))
                 {
-                    var gouda = Goudas.Single(x => x.Id == top.GoudaId);
+                    var phrase = Phrases.Single(x => x.Id == top.PhraseId);
                     var reference = new KeywordPhraseReference
                     {
                         Convergence = top.Rank,
-                        Phrase = gouda,
+                        Phrase = phrase,
                         Keyword = keywordEntity
                     };
-                    KeywordGoudaWeakReferences.Add(reference);
+                    KeywordPhraseReferences.Add(reference);
                     outp.Add(reference.Phrase);
                 }
                 SaveChanges();
@@ -127,7 +127,7 @@ namespace Domain.Entities
             }
         }
         private IEnumerable<KeywordPhraseReference> MergeWeakReferences(
-            ICollection<KeywordPhraseReference> weakReferences, IEnumerable<GoudaIdWithRankModel> tops)
+            ICollection<KeywordPhraseReference> weakReferences, IEnumerable<PhraseIdWithRankModel> tops)
         {
             var sortedWeakReferences = new List<KeywordPhraseReference>(weakReferences);
             foreach (var top in tops)
@@ -137,7 +137,7 @@ namespace Domain.Entities
                     sortedWeakReferences.Add(new KeywordPhraseReference
                     {
                         Convergence = top.Rank,
-                        Phrase = Goudas.Single(x => x.Id == top.GoudaId)
+                        Phrase = Phrases.Single(x => x.Id == top.PhraseId)
                     });
                     continue;
                 }
@@ -145,19 +145,19 @@ namespace Domain.Entities
                 if (!(top.Rank > sortedWeakReferences[9].CompositeConvergance))
                     continue;
 
-                if (sortedWeakReferences.Any(x => x.Phrase.Value.Equals(Goudas.Single(g => g.Id == top.GoudaId).Value)))
+                if (sortedWeakReferences.Any(x => x.Phrase.Value.Equals(Phrases.Single(g => g.Id == top.PhraseId).Value)))
                     continue;
 
                 var referenceToRemove = sortedWeakReferences.ElementAt(9);
-                KeywordGoudaWeakReferences.Remove(referenceToRemove);
+                KeywordPhraseReferences.Remove(referenceToRemove);
                 sortedWeakReferences.RemoveAt(9);
 
                 var referenceToAdd = new KeywordPhraseReference
                     {
                         Convergence = top.Rank,
-                        Phrase = Goudas.Single(x => x.Id == top.GoudaId)
+                        Phrase = Phrases.Single(x => x.Id == top.PhraseId)
                     };
-                KeywordGoudaWeakReferences.Add(referenceToAdd);
+                KeywordPhraseReferences.Add(referenceToAdd);
                 sortedWeakReferences.Add(referenceToAdd);
                 sortedWeakReferences.Sort(new WeakReferenceComparer());
             }

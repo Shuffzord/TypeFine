@@ -1,0 +1,165 @@
+﻿@using Website.Views
+@using Website.Extensions
+@{
+    var homeUrl = (Url.AbsoluteAction("Index", "Home"));
+}
+
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="engineModule">
+<head>
+    @{
+        Html.RenderPartial("_Meta");
+        Html.RenderPartial("_Styles");
+    }
+    <title>Jak Pisać</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+</head>
+<body ng-controller="ngSearchController" ng-class="{'search-active': items.length || isAnyWordInSearch()}">
+    <header>
+        <nav>
+            <a href="@(homeUrl)" target="_self">
+                <figure class="logo">
+                    <span class="icon-logo"></span>
+                </figure>
+                <figcaption>Jak Pisać?</figcaption>
+            </a>
+            <input type="checkbox" id="menu-button" />
+            <label for="menu-button"><span class="icon-menu"></span></label>
+            <ul>
+                <li><a href="@(homeUrl)" target="_self">Główna</a></li>
+                <li><a href="@ViewHelpers.GetWindowsStoreAddress()">Pobierz</a></li>
+                <li style="display:none;"><a href="#">O nas</a></li>
+                <li class="word-of-day" ng-controller="ngWordOfDayController" >
+                    <a ng-click="open()"><span ng-class="{'new-day' : isNewDay()}">Słówko dnia</span></a>
+                    <div class="modal" ng-class="{'open': isOpen}">
+                        <article>
+                            <header>{{word.Phrase.Right}} <span>{{word.Date}}</span></header>
+                            <section>
+                                <div ng-bind-html="to_trusted(word.Phrase.Comment)"></div>
+                                <button class="button-close" ng-click="close()">Zamknij</button>
+                            </section>
+                        </article>
+                    </div>
+                    <div class="overlay"></div>
+                </li>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li class="facebook" style="display:none;">
+                        @using (Html.BeginForm("ExternalLogin", "Account"))
+                        {
+                            <button type="submit">Połącz z Facebookiem</button>
+                        }
+                    </li>
+                }
+                else
+                {
+                    <li><a href="@(Url.Action("SignOut", "Account"))">Wyloguj</a></li>
+                }
+            </ul>
+        </nav>
+    </header>
+    @RenderBody()
+    <footer>
+        <div class="footer-wrap">
+            <figure><img src="~/Styles/Images/jp_1.png" /></figure>
+            <div class="footer-left">
+                <div class="logo-hypetrain">
+                    <figure></figure>
+                </div>
+            </div>
+            <div class="footer-right">
+                <ul>
+                    <li>intuicyjne menu</li>
+                    <li>ponad <span class="accent-bold">200 tysięcy</span> słów</li>
+                    <li>częste aktualizacje</li>
+                    <li>wiele platform!</li>
+                </ul>
+                <ul class="icons">
+                    <li class="media">
+                        <a href="@ViewHelpers.GetFacebookAddress()">
+                            <span class="icon-facebook"></span>
+                        </a>
+                    </li>
+                    <li class="media last-of-type">
+                        <a href="@ViewHelpers.GetTwitterAddress()">
+                            <span class="icon-twitter"></span>
+                        </a>
+                    </li>
+                    <li class="device">
+                        <a href="@ViewHelpers.GetWindowsStoreAddress()">
+                            <span class="icon-windows"></span>
+                        </a>
+                    </li>
+                    <li class="device">
+                        <a href="#">
+                            <span class="icon-apple"></span>
+                        </a>
+                    </li>
+                    <li class="device last-of-type">
+                        <a href="@ViewHelpers.GetAndroidStoreAddress()">
+                            <span class="icon-android"></span>
+                        </a>
+                    </li>
+                    <li class="browser">
+                        <a href="#">
+                            <span class="icon-chrome"></span>
+                        </a>
+                    </li>
+                    <li class="browser">
+                        <a href="#">
+                            <span class="icon-firefox"></span>
+                        </a>
+                    </li>
+                    <li class="browser">
+                        <a href="#">
+                            <span class="icon-IE"></span>
+                        </a>
+                    </li>
+                    <li class="browser">
+                        <a href="#">
+                            <span class="icon-opera"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">Jak Pisać &copy; 2014 | hypetrain.pl</div>
+    </footer>
+
+    @{
+        Html.RenderPartial("_Scripts");
+    }
+    <script>
+        (function ()
+        {
+            //Rozpoznawanie ie9 mobile na którym font-face nie działa, wbrew temu co zgłasza.
+            //Przekierujmy wtedy prosto do store - ale to rozwiązanie tymczasowe.
+
+            var ieMobile = (!!window.ActiveXObject && +(/IEMobile\/(\d+\.?(\d+)?)/.exec(navigator.userAgent)[1])) || NaN;
+            // var ie = (!!window.ActiveXObject && +(/msie\s(\d+)/i.exec(navigator.userAgent)[1])) || NaN;
+
+            if (ieMobile === 9)
+            {
+                document.documentElement.className += 'ie9-mobile';
+                location.href = '@ViewHelpers.GetWindowsStoreAddress()';
+            }
+
+            var ua = navigator.userAgent.toLowerCase();
+            var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+            if (isAndroid)
+            {
+                window.location = '@ViewHelpers.GetAndroidStoreAddress()';
+            }
+        })();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-37194203-2', 'jakpisac.edu.pl');
+      ga('send', 'pageview');
+    </script>
+</body>
+</html>

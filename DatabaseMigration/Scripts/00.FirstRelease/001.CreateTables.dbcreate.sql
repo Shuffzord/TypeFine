@@ -14,18 +14,18 @@ BEGIN
     -- Insert statements for procedure here
 	INSERT INTO [dbo].[WordOfTheDays]
            ([ActiveIn]
-           ,[Gouda_Id])
+           ,[Phrase_Id])
            select getdate(),x.ID from (SELECT top 1 ID
-  FROM [dbo].[Goudas] where Interesting = 1 order by newId()) x
+  FROM [dbo].[Phrases] where Interesting = 1 order by newId()) x
 END
 
 GO
-/****** Object:  Table [dbo].[GoudaMessages]    Script Date: 2014-11-20 11:53:08 ******/
+/****** Object:  Table [dbo].[PhraseMessages]    Script Date: 2014-11-20 11:53:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[GoudaMessages](
+CREATE TABLE [dbo].[PhraseMessages](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[Header] [nvarchar](50) NULL,
 	[Content] [nvarchar](max) NULL,
@@ -37,12 +37,12 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[GoudaNotifications]    Script Date: 2014-11-20 11:53:08 ******/
+/****** Object:  Table [dbo].[PhraseNotifications]    Script Date: 2014-11-20 11:53:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[GoudaNotifications](
+CREATE TABLE [dbo].[PhraseNotifications](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[Value] [nvarchar](max) NULL,
 	[DateSent] [datetime] NOT NULL,
@@ -54,12 +54,12 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[GoudaNotificationUsers]    Script Date: 2014-11-20 11:53:08 ******/
+/****** Object:  Table [dbo].[PhraseNotificationUsers]    Script Date: 2014-11-20 11:53:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[GoudaNotificationUsers](
+CREATE TABLE [dbo].[PhraseNotificationUsers](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[ChannelName] [nvarchar](max) NULL,
 	[LastUpdate] [datetime] NOT NULL,
@@ -71,12 +71,12 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Goudas]    Script Date: 2014-11-20 11:53:08 ******/
+/****** Object:  Table [dbo].[Phrases]    Script Date: 2014-11-20 11:53:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Goudas](
+CREATE TABLE [dbo].[Phrases](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[Value] [nvarchar](50) NULL,
 	[Comment] [nvarchar](max) NULL,
@@ -90,12 +90,12 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[GoudaUsers]    Script Date: 2014-11-20 11:53:08 ******/
+/****** Object:  Table [dbo].[PhraseUsers]    Script Date: 2014-11-20 11:53:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[GoudaUsers](
+CREATE TABLE [dbo].[PhraseUsers](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[DeviceId] [nvarchar](max) NULL,
 	[AccountId] [nvarchar](max) NULL,
@@ -106,16 +106,16 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[KeywordGoudaWeakReferences]    Script Date: 2014-11-20 11:53:08 ******/
+/****** Object:  Table [dbo].[KeywordPhraseWeakReferences]    Script Date: 2014-11-20 11:53:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[KeywordGoudaWeakReferences](
+CREATE TABLE [dbo].[KeywordPhraseWeakReferences](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[Convergence] [float] NOT NULL,
 	[UserWeight] [float] NOT NULL,
-	[Gouda_Id] [bigint] NULL,
+	[Phrase_Id] [bigint] NULL,
 	[Keyword_Id] [bigint] NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -133,7 +133,7 @@ CREATE TABLE [dbo].[Keywords](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[Value] [nvarchar](50) NULL,
 	[Count] [bigint] NOT NULL,
-	[Gouda_Id] [bigint] NULL,
+	[Phrase_Id] [bigint] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -148,8 +148,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[NotificationHistories](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
-	[GoudaNotifications_Id] [bigint] NULL,
-	[GoudaUser_Id] [bigint] NULL,
+	[PhraseNotifications_Id] [bigint] NULL,
+	[PhraseUser_Id] [bigint] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -157,12 +157,12 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[ProposedGoudas]    Script Date: 2014-11-20 11:53:08 ******/
+/****** Object:  Table [dbo].[ProposedPhrases]    Script Date: 2014-11-20 11:53:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[ProposedGoudas](
+CREATE TABLE [dbo].[ProposedPhrases](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[Right] [nvarchar](max) NULL,
 	[Comment] [nvarchar](max) NULL,
@@ -198,7 +198,7 @@ GO
 CREATE TABLE [dbo].[WordOfTheDays](
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[ActiveIn] [datetime] NOT NULL,
-	[Gouda_Id] [bigint] NULL,
+	[Phrase_Id] [bigint] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -214,9 +214,9 @@ GO
 
 CREATE VIEW [WeakReferences]
 AS
-SELECT        kg.Id, kg.Convergence, kg.UserWeight, kg.Gouda_Id, kg.Keyword_Id, k.Value kValue, g.Value AS gValue
-FROM            dbo.KeywordGoudaWeakReferences AS kg LEFT OUTER JOIN
-                         dbo.Goudas AS g ON g.Id = kg.Gouda_Id LEFT OUTER JOIN
+SELECT        kg.Id, kg.Convergence, kg.UserWeight, kg.Phrase_Id, kg.Keyword_Id, k.Value kValue, g.Value AS gValue
+FROM            dbo.KeywordPhraseWeakReferences AS kg LEFT OUTER JOIN
+                         dbo.Phrases AS g ON g.Id = kg.Phrase_Id LEFT OUTER JOIN
                          dbo.Keywords AS k ON k.Id = kg.Keyword_Id
 
 
@@ -231,7 +231,7 @@ GO
 CREATE VIEW [dbo].[UserRequestStatistics]
 AS
 SELECT Count(0) as UserRequestCount
-  FROM [dbo].[GoudaUsers] gu
+  FROM [dbo].[PhraseUsers] gu
   union
   select SUM(count)
   from [dbo].KeyWords k
@@ -251,7 +251,7 @@ CREATE VIEW [dbo].[UsersPerDay]
 AS
 select  x.updateTime,Count(x.Id) newUsers from (
 SELECT Id, dateadd(dd, datediff(dd, 0, LastUpdate)+0, 0) updateTime
-  FROM [dbo].[GoudaNotificationUsers]) x
+  FROM [dbo].[PhraseNotificationUsers]) x
   group by x.updateTime
 
 
@@ -272,7 +272,7 @@ AS
 
 select  DateAdd(d,x.updateTime*7,CAST(GETDATE() AS DATE)) as UserCount ,Count(x.Id) newUsers from (
 SELECT Id, DateDiff(d,GETDATE(),Cast(LastUpdate as Date))/7 updateTime
-  FROM [dbo].[GoudaNotificationUsers]
+  FROM [dbo].[PhraseNotificationUsers]
   ) x
   group by x.updateTime
   --order by updateTime
@@ -285,8 +285,8 @@ GO
 SET ANSI_PADDING ON
 
 GO
-/****** Object:  Index [IX_Goudas_Value]    Script Date: 2014-11-20 11:53:08 ******/
-CREATE UNIQUE NONCLUSTERED INDEX [IX_Goudas_Value] ON [dbo].[Goudas]
+/****** Object:  Index [IX_Phrases_Value]    Script Date: 2014-11-20 11:53:08 ******/
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Phrases_Value] ON [dbo].[Phrases]
 (
 	[Value] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -300,40 +300,40 @@ CREATE UNIQUE NONCLUSTERED INDEX [IX_Keywords_Value] ON [dbo].[Keywords]
 	[Value] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[GoudaNotificationUsers]  WITH CHECK ADD  CONSTRAINT [GoudaNotificationUser_User] FOREIGN KEY([User_Id])
-REFERENCES [dbo].[GoudaUsers] ([Id])
+ALTER TABLE [dbo].[PhraseNotificationUsers]  WITH CHECK ADD  CONSTRAINT [PhraseNotificationUser_User] FOREIGN KEY([User_Id])
+REFERENCES [dbo].[PhraseUsers] ([Id])
 GO
-ALTER TABLE [dbo].[GoudaNotificationUsers] CHECK CONSTRAINT [GoudaNotificationUser_User]
+ALTER TABLE [dbo].[PhraseNotificationUsers] CHECK CONSTRAINT [PhraseNotificationUser_User]
 GO
-ALTER TABLE [dbo].[KeywordGoudaWeakReferences]  WITH CHECK ADD  CONSTRAINT [KeywordGoudaWeakReference_Gouda] FOREIGN KEY([Gouda_Id])
-REFERENCES [dbo].[Goudas] ([Id])
+ALTER TABLE [dbo].[KeywordPhraseWeakReferences]  WITH CHECK ADD  CONSTRAINT [KeywordPhraseWeakReference_Phrase] FOREIGN KEY([Phrase_Id])
+REFERENCES [dbo].[Phrases] ([Id])
 GO
-ALTER TABLE [dbo].[KeywordGoudaWeakReferences] CHECK CONSTRAINT [KeywordGoudaWeakReference_Gouda]
+ALTER TABLE [dbo].[KeywordPhraseWeakReferences] CHECK CONSTRAINT [KeywordPhraseWeakReference_Phrase]
 GO
-ALTER TABLE [dbo].[KeywordGoudaWeakReferences]  WITH CHECK ADD  CONSTRAINT [KeywordGoudaWeakReference_Keyword] FOREIGN KEY([Keyword_Id])
+ALTER TABLE [dbo].[KeywordPhraseWeakReferences]  WITH CHECK ADD  CONSTRAINT [KeywordPhraseWeakReference_Keyword] FOREIGN KEY([Keyword_Id])
 REFERENCES [dbo].[Keywords] ([Id])
 GO
-ALTER TABLE [dbo].[KeywordGoudaWeakReferences] CHECK CONSTRAINT [KeywordGoudaWeakReference_Keyword]
+ALTER TABLE [dbo].[KeywordPhraseWeakReferences] CHECK CONSTRAINT [KeywordPhraseWeakReference_Keyword]
 GO
-ALTER TABLE [dbo].[Keywords]  WITH CHECK ADD  CONSTRAINT [Keyword_Gouda] FOREIGN KEY([Gouda_Id])
-REFERENCES [dbo].[Goudas] ([Id])
+ALTER TABLE [dbo].[Keywords]  WITH CHECK ADD  CONSTRAINT [Keyword_Phrase] FOREIGN KEY([Phrase_Id])
+REFERENCES [dbo].[Phrases] ([Id])
 GO
-ALTER TABLE [dbo].[Keywords] CHECK CONSTRAINT [Keyword_Gouda]
+ALTER TABLE [dbo].[Keywords] CHECK CONSTRAINT [Keyword_Phrase]
 GO
-ALTER TABLE [dbo].[NotificationHistories]  WITH CHECK ADD  CONSTRAINT [NotificationHistory_GoudaNotifications] FOREIGN KEY([GoudaNotifications_Id])
-REFERENCES [dbo].[GoudaNotifications] ([Id])
+ALTER TABLE [dbo].[NotificationHistories]  WITH CHECK ADD  CONSTRAINT [NotificationHistory_PhraseNotifications] FOREIGN KEY([PhraseNotifications_Id])
+REFERENCES [dbo].[PhraseNotifications] ([Id])
 GO
-ALTER TABLE [dbo].[NotificationHistories] CHECK CONSTRAINT [NotificationHistory_GoudaNotifications]
+ALTER TABLE [dbo].[NotificationHistories] CHECK CONSTRAINT [NotificationHistory_PhraseNotifications]
 GO
-ALTER TABLE [dbo].[NotificationHistories]  WITH CHECK ADD  CONSTRAINT [NotificationHistory_GoudaUser] FOREIGN KEY([GoudaUser_Id])
-REFERENCES [dbo].[GoudaUsers] ([Id])
+ALTER TABLE [dbo].[NotificationHistories]  WITH CHECK ADD  CONSTRAINT [NotificationHistory_PhraseUser] FOREIGN KEY([PhraseUser_Id])
+REFERENCES [dbo].[PhraseUsers] ([Id])
 GO
-ALTER TABLE [dbo].[NotificationHistories] CHECK CONSTRAINT [NotificationHistory_GoudaUser]
+ALTER TABLE [dbo].[NotificationHistories] CHECK CONSTRAINT [NotificationHistory_PhraseUser]
 GO
-ALTER TABLE [dbo].[WordOfTheDays]  WITH CHECK ADD  CONSTRAINT [WordOfTheDay_Gouda] FOREIGN KEY([Gouda_Id])
-REFERENCES [dbo].[Goudas] ([Id])
+ALTER TABLE [dbo].[WordOfTheDays]  WITH CHECK ADD  CONSTRAINT [WordOfTheDay_Phrase] FOREIGN KEY([Phrase_Id])
+REFERENCES [dbo].[Phrases] ([Id])
 GO
-ALTER TABLE [dbo].[WordOfTheDays] CHECK CONSTRAINT [WordOfTheDay_Gouda]
+ALTER TABLE [dbo].[WordOfTheDays] CHECK CONSTRAINT [WordOfTheDay_Phrase]
 GO
 
 

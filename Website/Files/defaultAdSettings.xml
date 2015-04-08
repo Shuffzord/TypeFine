@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AdSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CultureDescriptors>
+
+    <AdCultureDescriptor CultureName="default">
+      <Probabilities Probability="30" AdType="Smaato"/>
+      <!--<Probabilities Probability="16" AdType="AdMob" AppID="NO ID"/>-->
+      <Probabilities Probability="30" AdType="MobFox"  IsTest="false"/>
+      <Probabilities Probability="10" AdType="PubCenter" />
+      <Probabilities Probability="30" AdType="InnerActive" AppID="Marvelous_JakPisac_WP" />
+    </AdCultureDescriptor>
+  </CultureDescriptors>
+</AdSettings>

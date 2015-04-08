@@ -46,7 +46,7 @@ namespace DatabaseMigration
 
         private static int MainRun()
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["GoudaContext"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["TypeFineContext"].ConnectionString;
             var connectionStringBuilder = new SqlConnectionStringBuilder(connectionString);
             var databaseName = connectionStringBuilder.InitialCatalog;
 

@@ -1,0 +1,45 @@
+﻿@model Website.Models.SearchModel
+@{
+    Layout = "~/Views/Shared/_SearchLayout.cshtml";
+}
+<article class="page page-active ng-hide" ng-show="true">
+    <h1>Jak Pisać?</h1>
+    <section>
+        <blockquote>
+            <p>Jak często zastanawiasz się jak się pisze słowa i wyrażenia?</p>
+            <p>A'la, à propos, postscriptum, voilà?</p>
+            <p>Ucz się, imponuj i rozwijaj siebie!</p>
+        </blockquote>
+        <div class="search-container">
+            <label><input type="text" placeholder="np. Chapo ba" tabindex="1" ng-model="searchBox" /><button ng-click="triggerSearch()">OK</button></label>
+        </div>
+        <div class="search-progress" ng-show="loading && items.length > 4">
+            Ładowanie... <span class="icon-spinner"></span>
+        </div>
+        <div class="search-response" ng-class="{hasMatch: matchedIndex > -1}" >
+            <div class="search-item" data-id="{{item.keyword}}" ng-class="{matched: $index == matchedIndex }"  ng-repeat="item in items" ng-bind-html-unsafe="item.comment">
+                <h4>{{item.title}}</h4>
+                <div ng-bind-html="to_trusted(item.comment)"></div>
+                <button ng-click="triggerMatch(item.keyword, item.title, $index)" ><span class="icon-checkmark"></span></button>
+            </div>
+        </div>
+        <div class="search-item" ng-show="noResult">
+            <h4>Nie znaleziono żadnych pasujących słów.</h4>
+        </div>
+        <div class="search-progress" ng-show="loading">
+            Ładowanie... <span class="icon-spinner"></span>
+        </div>
+        <div class="search-more" ng-show="more && matchedIndex == -1 && items.length == 5">
+            <button ng-click="loadMore()">Więcej</button>
+        </div>
+    </section>
+</article>
+<script>
+    var ViewBag =
+        {
+            q: '@(Url.Action("Q", "Search"))',
+            m: '@(Url.Action("M", "Search"))',
+            w: '@Url.Action("W", "Search")',
+            query:'@(Model.Query ?? string.Empty)'
+        }
+</script>
