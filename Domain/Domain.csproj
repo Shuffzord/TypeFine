@@ -75,9 +75,9 @@
     <Compile Include="Entities\Phrase.cs" />
     <Compile Include="Entities\TypeFineContext.cs" />
     <Compile Include="Enums\RequestType.cs" />
-    <Compile Include="PhraseDatabaseInitializer.cs" />
-    <Compile Include="Mappers\ProposedGoudaMapper.cs" />
-    <Compile Include="Models\GoudaModel.cs" />
+    <Compile Include="TypeFineDatabaseInitializer.cs" />
+    <Compile Include="Mappers\ProposedPhraseMapper.cs" />
+    <Compile Include="Models\PhraseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -284,7 +284,7 @@ namespace Service
 
             using (var ctx = new TypeFineContext())
             {
-                Database.SetInitializer(new PhraseDatabaseInitializer());
+                Database.SetInitializer(new TypeFineDatabaseInitializer());
                 if (ctx.Database.Exists())
                 {
                     ctx.Database.Initialize(true);
@@ -296,7 +296,7 @@ namespace Service
             var readingTask = Task.Run(() =>
             {
                 var phrases =
-                    Assembly.GetAssembly(typeof(PhraseDatabaseInitializer))
+                    Assembly.GetAssembly(typeof(TypeFineDatabaseInitializer))
                             .GetManifestResourceStream(path);
 
                 if (phrases == null)

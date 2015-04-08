@@ -9,7 +9,7 @@ namespace Domain.Entities
     public class TypeFineContext : DbContext
     {
         public TypeFineContext()
-            : base("GoudaDb")
+            : base("TypeFineDB")
         {
         }
 

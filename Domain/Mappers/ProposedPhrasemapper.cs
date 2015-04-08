@@ -6,7 +6,7 @@ using System;
 
 namespace Domain.Mappers
 {
-    public static class ProposedPhrasemapper
+    public static class ProposedPhraseMapper
     {
         public static ProposedPhraseModel Convert(this ProposedPhrase phrase)
         {
@@ -26,7 +26,7 @@ namespace Domain.Mappers
         }
     }
 
-    public static class PhrasesMapper
+    public static class PhraseMapper
     { 
         public static PhraseModel Convert(this Phrase @this)
         {
