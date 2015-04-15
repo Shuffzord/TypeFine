@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:build="http://schemas.microsoft.com/developer/appx/2012/build" IgnorableNamespaces="build">
   <Identity Name="aa75e8bb-3f14-43ed-9ed2-9ca60878aeae" Version="1.0.0.0" Publisher="CN=mateusz.wozniak" />
   <mp:PhoneIdentity PhoneProductId="aa75e8bb-3f14-43ed-9ed2-9ca60878aeae" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
@@ -29,4 +29,7 @@
   <Capabilities>
     <Capability Name="internetClientServer" />
   </Capabilities>
+  <build:Metadata>
+    <build:Item Name="Blend" Version="12.0.51020.0" />
+  </build:Metadata>
 </Package>

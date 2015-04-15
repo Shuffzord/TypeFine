@@ -8,8 +8,8 @@
 }
 
 .fragment header[role=banner] .titlearea {
-    -ms-grid-column: 3;
-    margin-top: 37px;
-    margin-left: -96px;
+    -ms-grid-column: 1;
+    margin-top: 0px;
+    margin-left: 0px;
 }
 

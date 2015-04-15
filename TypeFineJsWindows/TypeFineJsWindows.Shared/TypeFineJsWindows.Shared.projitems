@@ -11,4 +11,8 @@
     <Content Include="$(MSBuildThisFileDirectory)pages\home\home.js" />
     <Content Include="$(MSBuildThisFileDirectory)pages\home\home.html" />
   </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)strings\en-US\resources.resjson" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)strings\pl-PL\resources.resjson" />
+  </ItemGroup>
 </Project>

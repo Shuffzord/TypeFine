@@ -3,6 +3,7 @@
 
     var nav = WinJS.Navigation;
 
+   
     WinJS.Namespace.define("Application", {
         PageControlNavigator: WinJS.Class.define(
             // Define the constructor function for the PageControlNavigator.

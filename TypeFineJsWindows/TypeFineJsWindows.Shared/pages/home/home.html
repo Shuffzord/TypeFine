@@ -1,26 +1,36 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>homePage</title>
+    <head>
+        <meta charset="utf-8" />
+        <title>homePage</title>
 
-    <link href="/css/default.css" rel="stylesheet" />
-    <link href="/pages/home/home.css" rel="stylesheet" />
-    <script src="/pages/home/home.js"></script>
-    <script src="/Scripts/jquery-2.1.3.js"></script>
-</head>
-<body>
-    <!-- The content that will be loaded and displayed. -->
-    <div class="fragment homepage">
-        <header aria-label="Header content" role="banner">
-            <h1 class="titlearea win-type-ellipsis">
-                <img src="/Assets/app_menu.png">
-                <span class="pagetitle">Navigation Template!</span>
-            </h1>
+        <link href="/css/default.css" rel="stylesheet" />
+        <link href="/pages/home/home.css" rel="stylesheet" />
+        <script src="/pages/home/home.js"></script>
+        <script src="/Scripts/jquery-2.1.3.js"></script>
+        <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+        <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+    </head>
+    <body>
+        <!-- The content that will be loaded and displayed. -->
+        <div class="fragment homepage">
+            <header aria-label="Header content" role="banner">
+                <h1 class="titlearea">
+                    <img class="centered menubtn" src="/Assets/app_menu.png" >
+                    <span class="pagetitle">JakPisać?</span>
+                </h1>
             </header>
-            <section aria-label="Main content" role="main">
-                <p>Content goes here.</p>
+
+            <section aria-label="Search tap content" class="searchArea" role="search">
+                <p style="height: 20vh;"><img src="/Assets/app_mainlogo.png" /></p>
+                <h2><!--<span data-win-res="{textContent: 'greetings'}">tets</span>--></h2>
             </section>
-    </div>
-</body>
+        </div>
+    </body>
 </html>
+<script>
+    //WinJS.Application.onloaded = function () {
+    //    WinJS.Resources.processAll();
+    //}
+
+</script>

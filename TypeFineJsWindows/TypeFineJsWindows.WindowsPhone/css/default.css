@@ -2,7 +2,11 @@
     height: 100%;
     width: 100%;
 }
-
+.centered {
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+}
 .fragment {
     /* Define a grid with rows for a banner and a body */
     -ms-grid-columns: 1fr;
@@ -28,14 +32,30 @@
 
         .fragment header[role=banner] .titlearea {
             -ms-grid-column: 3;
+            -ms-grid-column-span: 3;
+            grid-column: 3;
+            grid-column-span: 3;
             margin-top: 37px;
+            background: #F9BF21;
         }
 
             .fragment header[role=banner] .titlearea .pagetitle {
-                width: calc(100% - 20px);
+                text-align: center;
             }
 
     .fragment section[role=main] {
         -ms-grid-row: 2;
+        grid-row: 2;
         height: 100%;
+    }
+    .searchArea {
+        background-color: #2C2C2C;
+        text-align: center;
+        vertical-align: central;
+        -ms-grid-row: 2;
+        grid-row: 2;
+    }
+
+    .menubtn {
+        width: 15vh;
     }
