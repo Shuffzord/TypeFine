@@ -490,6 +490,9 @@
     <Content Include="Scripts\Controllers\ControllerBase.js">
       <DependentUpon>ControllerBase.ts</DependentUpon>
     </Content>
+    <Content Include="Scripts\sweetalert-dev.js" />
+    <Content Include="Scripts\sweetalert.min.js" />
+    <Content Include="Styles\extra.css" />
     <Content Include="Styles\mixins.css">
       <DependentUpon>mixins.less</DependentUpon>
     </Content>
@@ -502,6 +505,7 @@
     <Content Include="Styles\styles.min.css">
       <DependentUpon>styles.css</DependentUpon>
     </Content>
+    <Content Include="Styles\sweetalert.css" />
     <Content Include="Views\Shared\favicon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -641,6 +645,9 @@
     </Content>
     <Content Include="Service References\PhraseService\Website.PhraseService.WordOfTheDayResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Styles\styles.css.map">
+      <DependentUpon>styles.css</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

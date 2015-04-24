@@ -12,15 +12,16 @@
         </blockquote>
         <div class="search-container">
             <label><input type="text" placeholder="np. Chapo ba" tabindex="1" ng-model="searchBox" /><button ng-click="triggerSearch()">OK</button></label>
+
         </div>
         <div class="search-progress" ng-show="loading && items.length > 4">
             Ładowanie... <span class="icon-spinner"></span>
         </div>
-        <div class="search-response" ng-class="{hasMatch: matchedIndex > -1}" >
-            <div class="search-item" data-id="{{item.keyword}}" ng-class="{matched: $index == matchedIndex }"  ng-repeat="item in items" ng-bind-html-unsafe="item.comment">
+        <div class="search-response" ng-class="{hasMatch: matchedIndex > -1}">
+            <div class="search-item" data-id="{{item.keyword}}" ng-class="{matched: $index == matchedIndex }" ng-repeat="item in items" ng-bind-html-unsafe="item.comment">
                 <h4>{{item.title}}</h4>
                 <div ng-bind-html="to_trusted(item.comment)"></div>
-                <button ng-click="triggerMatch(item.keyword, item.title, $index)" ><span class="icon-checkmark"></span></button>
+                <button ng-click="triggerMatch(item.keyword, item.title, $index)"><span class="icon-checkmark"></span></button>
             </div>
         </div>
         <div class="search-item" ng-show="noResult">
@@ -32,6 +33,29 @@
         <div class="search-more" ng-show="more && matchedIndex == -1 && items.length == 5">
             <button ng-click="loadMore()">Więcej</button>
         </div>
+        <div>
+            <article>
+                <blockquote>
+                    <h4>
+                        Open Source!
+                    </h4>
+                    <div class="message">
+                        JakPisać (TypeFine) stanie się niedługo projektem open source. Oznacza to, że każdy z was, który chce brać czynny udział w tworzeniu darmowej - ale także płatnej - wersji aplikacji, będzie miał taką możliwość. Szukamy głównie programistów, ale również grafików, specjalistów języka polskiego, osoby zainteresowane marketingiem, rozwojem architektury serwerowej, algorytmu doboru słówek i właściwie każdej osoby, która czuje się na siłach wspierać i brać czynny udział w projekcie.<br />
+                        <br />
+                        Przejscie na open-source będzie podzielone na:<br />
+                        • Poszukiwanie osób odpowiedzialnych za konkretne działy (ios,android,wp,general,wiki,page,service,marketing....)<br />
+                        • Ujednolicenie wszystkich aplikacji (ios/android/wp/web) do jednej formy<br />
+                        • Otwarty projekt github<br />
+                        <br />
+                        Proszę chętnych o przesyłanie informacji o sobie i swoich umiejętnościach na adres mailowy <br />
+                        <h3><a href="mailto:AwesomeMarvelous@outlook.com">awesomemarvelous@outlook.com</a></h3>
+                        <br />
+
+
+                    </div>
+                </blockquote>
+            </article>
+        </div>
     </section>
 </article>
 <script>
@@ -40,6 +64,7 @@
             q: '@(Url.Action("Q", "Search"))',
             m: '@(Url.Action("M", "Search"))',
             w: '@Url.Action("W", "Search")',
-            query:'@(Model.Query ?? string.Empty)'
+            query: '@(Model.Query ?? string.Empty)'
         }
+
 </script>

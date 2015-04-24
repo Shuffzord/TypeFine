@@ -1,3 +1,5 @@
+/// <reference path="../TypeLite.Net4.d.ts" />
+/// <reference path="../typings/angularjs/angular.d.ts" />
 var Controllers;
 (function (Controllers) {
     var ControllerBase = (function () {
@@ -14,3 +16,4 @@ var Controllers;
     })();
     Controllers.ControllerBase = ControllerBase;
 })(Controllers || (Controllers = {}));
+//# sourceMappingURL=ControllerBase.js.map

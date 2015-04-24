@@ -9,6 +9,7 @@ namespace Website.Extensions
         {
             var requestUrl = url.RequestContext.HttpContext.Request.Url;
 
+            
             var absoluteAction = string.Format("{0}://{1}{2}",
                 requestUrl.Scheme,
                 requestUrl.Authority,

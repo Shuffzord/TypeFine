@@ -13,6 +13,7 @@
     }
     <title>Jak Pisać</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+  
 </head>
 <body ng-controller="ngSearchController" ng-class="{'search-active': items.length || isAnyWordInSearch()}">
     <header>
@@ -27,7 +28,7 @@
             <label for="menu-button"><span class="icon-menu"></span></label>
             <ul>
                 <li><a href="@(homeUrl)" target="_self">Główna</a></li>
-                <li><a href="@ViewHelpers.GetWindowsStoreAddress()">Pobierz</a></li>
+                @*<li><a href="@ViewHelpers.GetWindowsStoreAddress()">Pobierz</a></li>*@
                 <li style="display:none;"><a href="#">O nas</a></li>
                 <li class="word-of-day" ng-controller="ngWordOfDayController" >
                     <a ng-click="open()"><span ng-class="{'new-day' : isNewDay()}">Słówko dnia</span></a>
@@ -42,6 +43,7 @@
                     </div>
                     <div class="overlay"></div>
                 </li>
+               
                 @if (!User.Identity.IsAuthenticated)
                 {
                     <li class="facebook" style="display:none;">
@@ -59,9 +61,10 @@
         </nav>
     </header>
     @RenderBody()
+  
     <footer>
         <div class="footer-wrap">
-            <figure><img src="~/Styles/Images/jp_1.png" /></figure>
+            <figure>@*<img src="~/Styles/Images/jp_1.png" />*@</figure>
             <div class="footer-left">
                 <div class="logo-hypetrain">
                     <figure></figure>
@@ -91,7 +94,7 @@
                         </a>
                     </li>
                     <li class="device">
-                        <a href="#">
+                        <a href="@ViewHelpers.GetIosStoreAddress()">
                             <span class="icon-apple"></span>
                         </a>
                     </li>
@@ -100,7 +103,7 @@
                             <span class="icon-android"></span>
                         </a>
                     </li>
-                    <li class="browser">
+                    @*<li class="browser">
                         <a href="#">
                             <span class="icon-chrome"></span>
                         </a>
@@ -119,11 +122,11 @@
                         <a href="#">
                             <span class="icon-opera"></span>
                         </a>
-                    </li>
+                    </li>*@
                 </ul>
             </div>
         </div>
-        <div class="footer-bottom">Jak Pisać &copy; 2014 | hypetrain.pl</div>
+        <div class="footer-bottom">Jak Pisać &copy; 2014 | HYPETRAIN </div>
     </footer>
 
     @{
@@ -160,6 +163,8 @@
 
       ga('create', 'UA-37194203-2', 'jakpisac.edu.pl');
       ga('send', 'pageview');
+
+       
     </script>
 </body>
 </html>

@@ -9,7 +9,6 @@ namespace Website
         {
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                "~/Scripts/angular.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/Services")
                    .IncludeDirectory("~/Scripts/Services", "*.js", true));
 
@@ -18,7 +17,7 @@ namespace Website
 
             bundles.Add(new ScriptBundle("~/bundles/Engine")
                       .IncludeDirectory("~/Scripts/Engine", "*.js", true));
-        
+
         }
     }
 }

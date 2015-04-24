@@ -4,6 +4,7 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
+/// <reference path="../TypeLite.Net4.d.ts" />
 
 var Controllers;
 (function (Controllers) {
@@ -165,3 +166,4 @@ var Controllers;
     })(Controllers.ControllerBase);
     Controllers.SearchController = SearchController;
 })(Controllers || (Controllers = {}));
+//# sourceMappingURL=SearchController.js.map
