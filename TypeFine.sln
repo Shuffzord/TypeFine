@@ -14,12 +14,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{8125F3B4-3625-4DB8-AD30-E505E6D896F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedApp", "SharedApp", "{A43D4017-A7E5-49CB-B5CA-D909615C5D24}"
+	ProjectSection(SolutionItems) = preProject
+		TypeFineJsWindows\README.md = TypeFineJsWindows\README.md
+	EndProjectSection
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "TypeFineJsWindows.Shared", "TypeFineJsWindows\TypeFineJsWindows.Shared\TypeFineJsWindows.Shared.shproj", "{8DE61AA2-1410-4E16-9539-7825BE9A4CCF}"
 EndProject
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "TypeFineJsWindows.Windows", "TypeFineJsWindows\TypeFineJsWindows.Windows\TypeFineJsWindows.Windows.jsproj", "{2F7414AB-E279-4727-AE7D-079724A05972}"
 EndProject
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "TypeFineJsWindows.WindowsPhone", "TypeFineJsWindows\TypeFineJsWindows.WindowsPhone\TypeFineJsWindows.WindowsPhone.jsproj", "{1D082E74-FF5A-43CA-BF73-B6270DDA0227}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeApp", "OfficeApp\OfficeApp.csproj", "{1371CBD6-46EA-47B3-919F-FBE5BA00E258}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeAppWeb", "OfficeAppWeb\OfficeAppWeb.csproj", "{577058E0-1094-4155-94BC-1C57E27683D6}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -132,6 +139,28 @@ Global
 		{1D082E74-FF5A-43CA-BF73-B6270DDA0227}.Release|x86.ActiveCfg = Release|x86
 		{1D082E74-FF5A-43CA-BF73-B6270DDA0227}.Release|x86.Build.0 = Release|x86
 		{1D082E74-FF5A-43CA-BF73-B6270DDA0227}.Release|x86.Deploy.0 = Release|x86
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Release|ARM.ActiveCfg = Release|Any CPU
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Release|x64.ActiveCfg = Release|Any CPU
+		{1371CBD6-46EA-47B3-919F-FBE5BA00E258}.Release|x86.ActiveCfg = Release|Any CPU
+		{577058E0-1094-4155-94BC-1C57E27683D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{577058E0-1094-4155-94BC-1C57E27683D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{577058E0-1094-4155-94BC-1C57E27683D6}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{577058E0-1094-4155-94BC-1C57E27683D6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{577058E0-1094-4155-94BC-1C57E27683D6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{577058E0-1094-4155-94BC-1C57E27683D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{577058E0-1094-4155-94BC-1C57E27683D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{577058E0-1094-4155-94BC-1C57E27683D6}.Release|ARM.ActiveCfg = Release|Any CPU
+		{577058E0-1094-4155-94BC-1C57E27683D6}.Release|x64.ActiveCfg = Release|Any CPU
+		{577058E0-1094-4155-94BC-1C57E27683D6}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
